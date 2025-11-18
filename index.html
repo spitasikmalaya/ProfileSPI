@@ -28,9 +28,9 @@
     body.dark { background: #0f172a; color: #e2e8f0; }
     body.dark nav { background: linear-gradient(135deg, #1e293b, #334155); }
     body.dark header { background: linear-gradient(135deg, #1e293b, #334155); }
-    body.dark .section { color: #e2e8f0; }
     body.dark footer { background: #1e293b; }
-    body.dark .card { background:#1e293b; color:#e2e8f0; }
+    body.dark .card, 
+    body.dark .step { background:#1e293b; color:#e2e8f0; }
 
     /* Loading Screen */
     #loading {
@@ -47,7 +47,9 @@
       color: #003B85;
     }
 
-    /* Navbar */
+    /* ==========================
+       NAVBAR (NEW & RAPIH)
+    ========================== */
     nav {
       display: flex;
       justify-content: space-between;
@@ -61,33 +63,79 @@
       box-shadow: 0px 3px 12px rgba(0,0,0,0.15);
     }
 
-    nav .nav-links {
-      display: flex;
-      gap: 14px;
+    nav .logo {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
     }
 
-    nav a {
+    nav .nav-links {
+      display: flex;
+      gap: 26px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav .nav-links li a {
       color: white;
       text-decoration: none;
       font-weight: 500;
       position: relative;
-      transition: 0.3s ease;
-      padding: 6px 10px;
+      font-size: 16px;
+      padding-bottom: 5px;
+      transition: 0.3s;
     }
-    nav a:hover { opacity: 0.7; }
 
-    /* Hamburger (Mobile) */
+    /* Underline hover animation */
+    nav .nav-links li a::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      left: 0;
+      bottom: 0;
+      background: white;
+      border-radius: 2px;
+      transition: width .3s ease-in-out;
+    }
+
+    nav .nav-links li a:hover::after {
+      width: 100%;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .toggle-dark {
+      padding: 8px 18px;
+      background: white;
+      color: #003B85;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      transition: .3s;
+    }
+
+    .toggle-dark:hover { opacity: .85; }
+
+    /* HAMBURGER */
     .hamburger {
       display: none;
       flex-direction: column;
-      cursor: pointer;
       gap: 5px;
+      cursor: pointer;
     }
-    .hamburger div {
+    .hamburger span {
       width: 26px;
       height: 3px;
       background: white;
       border-radius: 4px;
+      transition: .3s;
     }
 
     /* Mobile Menu */
@@ -95,25 +143,16 @@
       display: none;
       flex-direction: column;
       background: #003B85;
-      padding: 20px;
-      gap: 18px;
+      padding: 25px;
+      gap: 22px;
     }
     .mobile-menu a {
       color: white;
       font-size: 18px;
+      text-decoration: none;
     }
 
-    .toggle-dark {
-      padding: 10px 20px;
-      background: white;
-      color: #003B85;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: 0.3s;
-    }
-
-    /* Hero */
+    /* HERO */
     header {
       padding: 160px 30px;
       text-align: center;
@@ -137,7 +176,6 @@
 
     h2 { font-size: 36px; margin-bottom: 20px; font-weight: 700; }
 
-    /* Cards */
     .cards {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -161,7 +199,7 @@
       box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
     }
 
-    /* Member Steps Section */
+    /* Member Steps */
     .member-steps {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -177,15 +215,7 @@
       transition: 0.3s;
       text-align: center;
     }
-
-    body.dark .step {
-      background: #1e293b;
-      color: #e2e8f0;
-    }
-
-    .step:hover {
-      transform: translateY(-6px);
-    }
+    .step:hover { transform: translateY(-6px); }
 
     .step-number {
       width: 50px;
@@ -209,21 +239,15 @@
     }
 
     @media (max-width: 768px) {
-      nav { padding: 15px 20px; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
-      .cards { grid-template-columns: 1fr; }
-      header h1 { font-size: 32px; }
-      header p { font-size: 16px; }
-      .section { padding: 50px 20px; }
     }
 
     @media (max-width: 576px) {
       .member-steps { grid-template-columns: 1fr; }
-      .step-number { width: 42px; height: 42px; font-size: 18px; }
     }
 
-    /* SOSMED FLOAT */
+    /* Floating Sosmed */
     .sosmed-fixed {
       position: fixed;
       left: 15px;
@@ -237,9 +261,7 @@
       width: 42px;
       transition: 0.3s;
     }
-    .sosmed-fixed img:hover {
-      transform: scale(1.1);
-    }
+    .sosmed-fixed img:hover { transform: scale(1.1); }
 
     footer {
       padding: 25px;
@@ -257,21 +279,23 @@
 
 <!-- NAVBAR -->
 <nav>
-  <div style="font-size: 22px; font-weight: 600;">STOCK POINT INDOGROSIR</div>
+  <div class="logo">STOCK POINT INDOGROSIR</div>
 
-  <div class="nav-links">
-    <a href="#about">Tentang</a>
-    <a href="#services">Layanan</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#member">Member</a>
-    <a href="#contact">Kontak</a>
+  <ul class="nav-links">
+    <li><a href="#about">Tentang</a></li>
+    <li><a href="#services">Layanan</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#member">Member</a></li>
+    <li><a href="#contact">Kontak</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <div class="toggle-dark" onclick="toggleDarkMode()">Dark Mode</div>
+
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
   </div>
-
-  <div class="hamburger" onclick="toggleMenu()">
-    <div></div><div></div><div></div>
-  </div>
-
-  <div class="toggle-dark" onclick="toggleDarkMode()">Dark Mode</div>
 </nav>
 
 <!-- MOBILE MENU -->
@@ -286,7 +310,7 @@
 <!-- HERO -->
 <header data-aos="fade-up">
   <h1>Distribusi Cepat & Tepat</h1>
-  <p>Stock Point Indogrosir — Mendukung Toko & UMKM Dengan Pasokan Terpercaya</p>
+  <p>Stock Point Indogrosir Tasikmalaya — Mendukung Toko & UMKM Dengan Pasokan Terpercaya</p>
 </header>
 
 <!-- ABOUT -->
@@ -372,82 +396,33 @@
   <div class="social-buttons" style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-top:30px;">
 
     <!-- WhatsApp -->
-    <a href="https://wa.me/6281234567890" target="_blank" class="soc-btn"
-      style="
-        padding:14px 26px;
-        background:linear-gradient(135deg,#25D366,#128C7E);
-        color:white;
-        border-radius:12px;
-        font-weight:600;
-        text-decoration:none;
-        font-size:18px;
-        box-shadow:0px 6px 15px rgba(0,0,0,0.2);
-        transition:.3s;
-      "
-      onmouseover="this.style.transform='scale(1.08)'"
-      onmouseout="this.style.transform='scale(1)'">
+    <a href="https://wa.me/6281234567890" target="_blank"
+      style="padding:14px 26px; background:linear-gradient(135deg,#25D366,#128C7E); color:white; border-radius:12px; font-weight:600; text-decoration:none; font-size:18px;">
       WhatsApp
     </a>
 
     <!-- Instagram -->
-    <a href="https://instagram.com/" target="_blank" class="soc-btn"
-      style="
-        padding:14px 26px;
-        background:linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);
-        color:white;
-        border-radius:12px;
-        font-weight:600;
-        text-decoration:none;
-        font-size:18px;
-        box-shadow:0px 6px 15px rgba(0,0,0,0.2);
-        transition:.3s;
-      "
-      onmouseover="this.style.transform='scale(1.08)'"
-      onmouseout="this.style.transform='scale(1)'">
+    <a href="https://instagram.com/" target="_blank"
+      style="padding:14px 26px; background:linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5); color:white; border-radius:12px; font-weight:600; text-decoration:none; font-size:18px;">
       Instagram
     </a>
 
     <!-- Facebook -->
-    <a href="https://facebook.com/" target="_blank" class="soc-btn"
-      style="
-        padding:14px 26px;
-        background:linear-gradient(135deg,#1877F2,#0d47a1);
-        color:white;
-        border-radius:12px;
-        font-weight:600;
-        text-decoration:none;
-        font-size:18px;
-        box-shadow:0px 6px 15px rgba(0,0,0,0.2);
-        transition:.3s;
-      "
-      onmouseover="this.style.transform='scale(1.08)'"
-      onmouseout="this.style.transform='scale(1)'">
+    <a href="https://facebook.com/" target="_blank"
+      style="padding:14px 26px; background:linear-gradient(135deg,#1877F2,#0d47a1); color:white; border-radius:12px; font-weight:600; text-decoration:none; font-size:18px;">
       Facebook
     </a>
 
     <!-- TikTok -->
-    <a href="https://tiktok.com/" target="_blank" class="soc-btn"
-      style="
-        padding:14px 26px;
-        background:black;
-        color:white;
-        border-radius:12px;
-        font-weight:600;
-        text-decoration:none;
-        font-size:18px;
-        border:2px solid #00f2ea;
-        box-shadow:0px 6px 15px rgba(0,0,0,0.3);
-        transition:.3s;
-      "
-      onmouseover="this.style.transform='scale(1.08)'; this.style.boxShadow='0 0 15px #00f2ea';"
-      onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0px 6px 15px rgba(0,0,0,0.3)'">
+    <a href="https://tiktok.com/" target="_blank"
+      style="padding:14px 26px; background:black; color:white; border-radius:12px; font-weight:600; text-decoration:none; font-size:18px;">
       TikTok
     </a>
 
   </div>
 </section>
 
-<!-- SOCIAL MEDIA FLOAT -->
+<!-- SOSMED FLOAT -->
 <div class="sosmed-fixed">
   <a href="https://wa.me/6281234567890" target="_blank"><img src="https://i.ibb.co/sK6H0GQ/wa.png"></a>
   <a href="https://instagram.com" target="_blank"><img src="https://i.ibb.co/4J8w1dq/ig.png"></a>
@@ -498,4 +473,3 @@
 
 </body>
 </html>
-
