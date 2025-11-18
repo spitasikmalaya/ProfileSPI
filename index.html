@@ -27,9 +27,10 @@
     /* DARK MODE */
     body.dark { background: #0f172a; color: #e2e8f0; }
     body.dark nav { background: linear-gradient(135deg, #1e293b, #334155); }
-    body.dark header { background: rgba(20,30,55,0.8); }
+    body.dark header { background: linear-gradient(135deg, #1e293b, #334155); }
+    body.dark .section { color: #e2e8f0; }
     body.dark footer { background: #1e293b; }
-    body.dark .card { background: #1e293b; color: #e2e8f0; }
+    body.dark .card { background:#1e293b; color:#e2e8f0; }
 
     /* Loading Screen */
     #loading {
@@ -51,7 +52,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px 28px;
+      padding: 18px 40px;
       background: linear-gradient(135deg, #003B85, #005FCC);
       color: white;
       position: sticky;
@@ -62,13 +63,14 @@
 
     nav .nav-links {
       display: flex;
-      gap: 20px;
+      gap: 14px;
     }
 
     nav a {
       color: white;
       text-decoration: none;
       font-weight: 500;
+      position: relative;
       transition: 0.3s ease;
       padding: 6px 10px;
     }
@@ -82,7 +84,7 @@
       gap: 5px;
     }
     .hamburger div {
-      width: 28px;
+      width: 26px;
       height: 3px;
       background: white;
       border-radius: 4px;
@@ -92,25 +94,17 @@
     .mobile-menu {
       display: none;
       flex-direction: column;
-      background: #005FCC;
+      background: #003B85;
       padding: 20px;
       gap: 18px;
-      animation: fadeSlide 0.3s ease-in-out;
     }
-
-    @keyframes fadeSlide {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
     .mobile-menu a {
       color: white;
       font-size: 18px;
-      padding: 8px 0;
     }
 
     .toggle-dark {
-      padding: 10px 16px;
+      padding: 10px 20px;
       background: white;
       color: #003B85;
       border-radius: 8px;
@@ -121,38 +115,17 @@
 
     /* Hero */
     header {
-      padding: 120px 30px;
+      padding: 160px 30px;
       text-align: center;
-      background: linear-gradient(135deg, rgba(0,60,130,0.7), rgba(0,90,200,0.7)),
+      background: linear-gradient(135deg, rgba(0,60,130,0.8), rgba(0,90,200,0.8)),
         url('https://images.unsplash.com/photo-1581093458791-9e2b1a4a24f2?auto=format&fit=crop&w=1200&q=60');
       background-size: cover;
       background-position: center;
       color: white;
     }
 
-    header h1 { 
-      font-size: 46px; 
-      margin-bottom: 10px; 
-      font-weight: 700; 
-    }
-
-    header p { 
-      font-size: 20px; 
-      opacity: 0.9; 
-      margin-bottom: 25px; 
-    }
-
-    header button {
-      padding: 14px 32px;
-      background: white;
-      color: #003B85;
-      font-size: 16px;
-      font-weight: 600;
-      border-radius: 10px;
-      border: none;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+    header h1 { font-size: 52px; margin-bottom: 10px; font-weight: 700; }
+    header p { font-size: 20px; opacity: 0.9; margin-bottom: 25px; }
 
     /* Sections */
     .section {
@@ -162,7 +135,7 @@
       margin: auto;
     }
 
-    h2 { font-size: 34px; margin-bottom: 20px; font-weight: 700; }
+    h2 { font-size: 36px; margin-bottom: 20px; font-weight: 700; }
 
     /* Cards */
     .cards {
@@ -173,7 +146,7 @@
     }
 
     .card {
-      padding: 22px;
+      padding: 20px;
       background: white;
       border-radius: 14px;
       box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
@@ -185,19 +158,87 @@
     .carousel img {
       width: 100%;
       border-radius: 14px;
-      object-fit: cover;
-      max-height: 350px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
     }
 
-    /* WA FLOAT */
-    .wa-float {
+    /* Member Steps Section */
+    .member-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .step {
+      padding: 22px;
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+      transition: 0.3s;
+      text-align: center;
+    }
+
+    body.dark .step {
+      background: #1e293b;
+      color: #e2e8f0;
+    }
+
+    .step:hover {
+      transform: translateY(-6px);
+    }
+
+    .step-number {
+      width: 50px;
+      height: 50px;
+      margin: 0 auto 15px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #003B85, #005FCC);
+      color: white;
+      font-size: 22px;
+      font-weight: 700;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 992px) {
+      .cards { grid-template-columns: repeat(2, 1fr); }
+      .member-steps { grid-template-columns: repeat(2, 1fr); }
+      header h1 { font-size: 42px; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 15px 20px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .cards { grid-template-columns: 1fr; }
+      header h1 { font-size: 32px; }
+      header p { font-size: 16px; }
+      .section { padding: 50px 20px; }
+    }
+
+    @media (max-width: 576px) {
+      .member-steps { grid-template-columns: 1fr; }
+      .step-number { width: 42px; height: 42px; font-size: 18px; }
+    }
+
+    /* SOSMED FLOAT */
+    .sosmed-fixed {
       position: fixed;
-      bottom: 25px;
-      right: 25px;
+      left: 15px;
+      bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
       z-index: 9999;
     }
-    .wa-float img {
-      width: 70px;
+    .sosmed-fixed img {
+      width: 42px;
+      transition: 0.3s;
+    }
+    .sosmed-fixed img:hover {
+      transform: scale(1.1);
     }
 
     footer {
@@ -207,49 +248,6 @@
       color: white;
       margin-top: 40px;
     }
-
-    /* ★★★★★ RESPONSIVE FIXED ★★★★★ */
-
-    @media (max-width: 992px) {
-      .cards { grid-template-columns: repeat(2, 1fr); }
-      header h1 { font-size: 38px; }
-    }
-
-    @media (max-width: 768px) {
-      nav { padding: 14px 18px; }
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
-
-      .cards { grid-template-columns: 1fr; }
-
-      header {
-        padding: 90px 20px;
-      }
-
-      header h1 { font-size: 30px; }
-      header p { font-size: 15px; }
-
-      .section { padding: 55px 20px; }
-    }
-
-    @media (max-width: 480px) {
-      header {
-        padding: 70px 20px;
-      }
-
-      header h1 { font-size: 26px; }
-      header p { font-size: 14px; }
-
-      .toggle-dark { padding: 6px 12px; }
-
-      .cards { gap: 18px; }
-      .card { padding: 18px; }
-
-      h2 { font-size: 26px; }
-
-      .mobile-menu a { font-size: 16px; }
-    }
-
   </style>
 </head>
 <body>
@@ -259,12 +257,13 @@
 
 <!-- NAVBAR -->
 <nav>
-  <div style="font-size: 22px; font-weight: 600;">STOCK POINT INDOGROSIR</div>
+  <div style="font-size: 22px; font-weight: 600;">STOCK POINT INDOGROSIR TASIKMALAYA</div>
 
   <div class="nav-links">
     <a href="#about">Tentang</a>
     <a href="#services">Layanan</a>
     <a href="#gallery">Gallery</a>
+    <a href="#member">Member</a>
     <a href="#contact">Kontak</a>
   </div>
 
@@ -280,6 +279,7 @@
   <a href="#about">Tentang</a>
   <a href="#services">Layanan</a>
   <a href="#gallery">Gallery</a>
+  <a href="#member">Member</a>
   <a href="#contact">Kontak</a>
 </div>
 
@@ -287,13 +287,14 @@
 <header data-aos="fade-up">
   <h1>Distribusi Cepat & Tepat</h1>
   <p>Stock Point Indogrosir — Mendukung Toko & UMKM Dengan Pasokan Terpercaya</p>
-  <button onclick="window.location='#contact'">Hubungi Kami</button>
 </header>
 
 <!-- ABOUT -->
 <section id="about" class="section" data-aos="fade-up">
   <h2>Tentang Kami</h2>
-  <p>Stock Point Indogrosir adalah unit distribusi resmi yang berfokus pada penyediaan produk kebutuhan harian secara cepat dan efisien, mendukung UMKM serta toko dengan pasokan stabil dan layanan profesional.</p>
+  <p> Stock Point Indogrosir adalah unit distribusi resmi yang berfokus pada penyediaan 
+    produk kebutuhan harian secara cepat dan efisien, mendukung UMKM serta toko dengan 
+    pasokan stabil dan layanan profesional.</p>
 </section>
 
 <!-- SERVICES -->
@@ -323,9 +324,40 @@
   <h2>Gallery</h2>
 
   <div class="carousel">
-    <div><img src="https://via.placeholder.com/600x350"></div>
-    <div><img src="https://via.placeholder.com/600x350"></div>
-    <div><img src="https://via.placeholder.com/600x350"></div>
+    <div><img src="logo1.png" alt="Gallery 1"></div>
+    <div><img src="logo2.png" alt="Gallery 2"></div>
+    <div><img src="logo3.png" alt="Gallery 3"></div>
+  </div>
+</section>
+
+<!-- MEMBER -->
+<section id="member" class="section" data-aos="fade-up">
+  <h2>Cara Menjadi Member</h2>
+
+  <div class="member-steps">
+    <div class="step" data-aos="zoom-in">
+      <div class="step-number">1</div>
+      <h3>Request kepada Admin</h3>
+      <p>Calon member mengajukan permintaan pendaftaran melalui admin Stock Point.</p>
+    </div>
+
+    <div class="step" data-aos="zoom-in" data-aos-delay="150">
+      <div class="step-number">2</div>
+      <h3>Survey Toko / Warung</h3>
+      <p>Advisor melakukan pengecekan lokasi dan memastikan data usaha.</p>
+    </div>
+
+    <div class="step" data-aos="zoom-in" data-aos-delay="300">
+      <div class="step-number">3</div>
+      <h3>Proses Pendaftaran</h3>
+      <p>Advisor menginput data lengkap calon member ke sistem.</p>
+    </div>
+
+    <div class="step" data-aos="zoom-in" data-aos-delay="450">
+      <div class="step-number">4</div>
+      <h3>Akun Login Apps</h3>
+      <p>Member akan mendapatkan akun untuk masuk ke aplikasi SPI.</p>
+    </div>
   </div>
 </section>
 
@@ -413,32 +445,14 @@
     </a>
 
   </div>
-
-  <br><br>
-  <a href="profil.pdf" download>
-    <button style="
-      padding:14px 28px;
-      background:#003B85;
-      color:white;
-      font-size:16px;
-      font-weight:600;
-      border-radius:12px;
-      border:none;
-      cursor:pointer;
-      transition:.3s;
-    "
-    onmouseover="this.style.transform='scale(1.05)'"
-    onmouseout="this.style.transform='scale(1)'">
-      Download Profil Perusahaan (PDF)
-    </button>
-  </a>
 </section>
 
-<!-- WA FLOAT -->
-<div class="wa-float">
-  <a href="https://wa.me/6281234567890" target="_blank">
-    <img src="https://i.ibb.co/sK6H0GQ/wa.png">
-  </a>
+<!-- SOCIAL MEDIA FLOAT -->
+<div class="sosmed-fixed">
+  <a href="https://wa.me/6281234567890" target="_blank"><img src="https://i.ibb.co/sK6H0GQ/wa.png"></a>
+  <a href="https://instagram.com" target="_blank"><img src="https://i.ibb.co/4J8w1dq/ig.png"></a>
+  <a href="https://tiktok.com" target="_blank"><img src="https://i.ibb.co/4FRBjWz/tiktok.png"></a>
+  <a href="https://facebook.com" target="_blank"><img src="https://i.ibb.co/qs2zKxC/fb.png"></a>
 </div>
 
 <footer>© 2025 Stock Point Indogrosir — All Rights Reserved</footer>
@@ -450,19 +464,19 @@
 
 <script>
   /* Loading */
-  window.onload = function () {
+  window.onload = function() {
     setTimeout(() => {
       document.getElementById("loading").style.opacity = "0";
       setTimeout(() => document.getElementById("loading").style.display = "none", 500);
     }, 800);
-  };
+  }
 
   /* AOS */
   AOS.init();
 
   /* Dark Mode */
   function toggleDarkMode() {
-    document.body.classList.toggle("dark");
+    document.body.classList.toggle('dark');
   }
 
   /* Mobile Menu */
@@ -472,8 +486,8 @@
   }
 
   /* Carousel */
-  $(document).ready(function () {
-    $(".carousel").slick({
+  $(document).ready(function(){
+    $('.carousel').slick({
       dots: true,
       infinite: true,
       autoplay: true,
