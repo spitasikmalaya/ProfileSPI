@@ -1,222 +1,283 @@
-<!DOCTYPE html>
+index.html<!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Stock Point Indogrosir Tasikmalaya</title>
 
-  <!-- Google Font -->
+  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- AOS -->
+  <!-- AOS Animation -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
 
-  <!-- Slick -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+  <!-- Slick Carousel -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 
   <style>
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:'Poppins',sans-serif;
-      background:#f5f8ff;
-      color:#003B85;
-      transition:.3s;
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f5f8ff;
+      color: #003B85;
+      transition: 0.3s ease-in-out;
     }
 
-    section{scroll-margin-top:100px}
+    /* DARK MODE */
+    body.dark { background: #0f172a; color: #e2e8f0; }
+    body.dark nav { background: linear-gradient(135deg, #1e293b, #334155); }
+    body.dark header { background: linear-gradient(135deg, #1e293b, #334155); }
+    body.dark footer { background: #1e293b; }
+    body.dark .card, 
+    body.dark .step { background:#1e293b; color:#e2e8f0; }
 
-    body.dark{
-      background:#0f172a;
-      color:#e2e8f0;
-    }
-    body.dark nav,
-    body.dark footer{background:#1e293b}
-    body.dark .card,
-    body.dark .step{background:#1e293b;color:#e2e8f0}
-
-    #loading{
-      position:fixed;
-      inset:0;
-      background:#fff;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:26px;
-      font-weight:600;
-      z-index:99999;
-    }
-
-    nav{
-      position:sticky;
-      top:0;
-      z-index:999;
-      background:linear-gradient(135deg,#003B85,#005FCC);
-      color:#fff;
-      padding:16px 40px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      box-shadow:0 4px 12px rgba(0,0,0,.15);
+    /* Loading Screen */
+    #loading {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: white;
+      z-index: 99999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 28px;
+      font-weight: 600;
+      color: #003B85;
     }
 
-    .logo{font-size:22px;font-weight:600}
-
-    .nav-links{
-      display:flex;
-      gap:26px;
-      list-style:none;
-      margin:0;
-      padding:0;
-    }
-    .nav-links a{
-      color:#fff;
-      text-decoration:none;
-      font-weight:500;
-      position:relative;
-    }
-    .nav-links a::after{
-      content:"";
-      position:absolute;
-      left:0;
-      bottom:-6px;
-      width:0;
-      height:2px;
-      background:#fff;
-      transition:.3s;
-    }
-    .nav-links a:hover::after{width:100%}
-
-    .nav-right{display:flex;gap:16px;align-items:center}
-
-    .toggle-dark{
-      background:#fff;
-      color:#003B85;
-      padding:7px 16px;
-      border-radius:8px;
-      font-weight:600;
-      cursor:pointer;
+    /* ==========================
+       NAVBAR (NEW & RAPIH)
+    ========================== */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 40px;
+      background: linear-gradient(135deg, #003B85, #005FCC);
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0px 3px 12px rgba(0,0,0,0.15);
     }
 
-    .hamburger{
-      display:none;
-      flex-direction:column;
-      gap:5px;
-      cursor:pointer;
-    }
-    .hamburger span{
-      width:26px;height:3px;
-      background:#fff;
-      border-radius:3px;
+    nav .logo {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
     }
 
-    .mobile-menu{
-      display:none;
-      flex-direction:column;
-      background:#003B85;
-      padding:22px;
-      gap:18px;
-    }
-    .mobile-menu a{
-      color:#fff;
-      text-decoration:none;
-      font-size:18px;
+    nav .nav-links {
+      display: flex;
+      gap: 26px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
     }
 
-    header{
-      padding:160px 30px;
-      text-align:center;
-      color:#fff;
-      background:
-        linear-gradient(135deg,rgba(0,60,130,.85),rgba(0,90,200,.85)),
-        url("https://images.unsplash.com/photo-1581093458791-9e2b1a4a24f2");
-      background-size:cover;
-      background-position:center;
-    }
-    header h1{font-size:52px}
-    header p{font-size:20px;opacity:.9}
-
-    .section{
-      max-width:1200px;
-      margin:auto;
-      padding:70px 40px;
-      text-align:center;
+    nav .nav-links li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+      font-size: 16px;
+      padding-bottom: 5px;
+      transition: 0.3s;
     }
 
-    h2{font-size:36px;margin-bottom:15px}
-    .subtitle{opacity:.8;margin-bottom:35px}
-
-    .cards{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:25px;
+    /* Underline hover animation */
+    nav .nav-links li a::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      left: 0;
+      bottom: 0;
+      background: white;
+      border-radius: 2px;
+      transition: width .3s ease-in-out;
     }
 
-    .card,.step{
-      background:#fff;
-      padding:24px;
-      border-radius:14px;
-      box-shadow:0 6px 16px rgba(0,0,0,.1);
-      transition:.3s;
-    }
-    .card:hover,.step:hover{transform:translateY(-6px)}
-
-    .card h3{margin-top:0}
-
-    .carousel img{
-      width:100%;
-      border-radius:14px;
+    nav .nav-links li a:hover::after {
+      width: 100%;
     }
 
-    .member-steps{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:25px;
-      margin-top:40px;
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
     }
 
-    .step-number{
-      width:50px;
-      height:50px;
-      margin:0 auto 15px;
-      background:linear-gradient(135deg,#003B85,#005FCC);
-      color:#fff;
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:700;
-      font-size:20px;
+    .toggle-dark {
+      padding: 8px 18px;
+      background: white;
+      color: #003B85;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      transition: .3s;
     }
 
-    footer{
-      text-align:center;
-      padding:25px;
-      background:#003B85;
-      color:#fff;
+    .toggle-dark:hover { opacity: .85; }
+
+    /* HAMBURGER */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+    .hamburger span {
+      width: 26px;
+      height: 3px;
+      background: white;
+      border-radius: 4px;
+      transition: .3s;
     }
 
-    @media(max-width:992px){
-      .cards,.member-steps{grid-template-columns:repeat(2,1fr)}
+    /* Mobile Menu */
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: #003B85;
+      padding: 25px;
+      gap: 22px;
+    }
+    .mobile-menu a {
+      color: white;
+      font-size: 18px;
+      text-decoration: none;
     }
 
-    @media(max-width:768px){
-      .nav-links{display:none}
-      .hamburger{display:flex}
+    /* HERO */
+    header {
+      padding: 160px 30px;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(0,60,130,0.8), rgba(0,90,200,0.8)),
+        url('https://images.unsplash.com/photo-1581093458791-9e2b1a4a24f2?auto=format&fit=crop&w=1200&q=60');
+      background-size: cover;
+      background-position: center;
+      color: white;
     }
 
-    @media(max-width:576px){
-      header h1{font-size:38px}
-      .member-steps{grid-template-columns:1fr}
+    header h1 { font-size: 52px; margin-bottom: 10px; font-weight: 700; }
+    header p { font-size: 20px; opacity: 0.9; margin-bottom: 25px; }
+
+    /* Sections */
+    .section {
+      padding: 70px 40px;
+      text-align: center;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h2 { font-size: 36px; margin-bottom: 20px; font-weight: 700; }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .card {
+      padding: 20px;
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+    .card:hover { transform: translateY(-8px); }
+
+    /* Carousel */
+    .carousel img {
+      width: 100%;
+      border-radius: 14px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
+    }
+
+    /* Member Steps */
+    .member-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .step {
+      padding: 22px;
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+      transition: 0.3s;
+      text-align: center;
+    }
+    .step:hover { transform: translateY(-6px); }
+
+    .step-number {
+      width: 50px;
+      height: 50px;
+      margin: 0 auto 15px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #003B85, #005FCC);
+      color: white;
+      font-size: 22px;
+      font-weight: 700;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 992px) {
+      .cards { grid-template-columns: repeat(2, 1fr); }
+      .member-steps { grid-template-columns: repeat(2, 1fr); }
+      header h1 { font-size: 42px; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    @media (max-width: 576px) {
+      .member-steps { grid-template-columns: 1fr; }
+    }
+
+    /* Floating Sosmed */
+    .sosmed-fixed {
+      position: fixed;
+      left: 15px;
+      bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 9999;
+    }
+    .sosmed-fixed img {
+      width: 42px;
+      transition: 0.3s;
+    }
+    .sosmed-fixed img:hover { transform: scale(1.1); }
+
+    footer {
+      padding: 25px;
+      text-align: center;
+      background: #003B85;
+      color: white;
+      margin-top: 40px;
     }
   </style>
 </head>
-
 <body>
 
+<!-- LOADING -->
 <div id="loading">Loading...</div>
 
+<!-- NAVBAR -->
 <nav>
   <div class="logo">STOCK POINT INDOGROSIR</div>
 
@@ -229,13 +290,15 @@
   </ul>
 
   <div class="nav-right">
-    <div class="toggle-dark" onclick="toggleDark()">Dark</div>
+    <div class="toggle-dark" onclick="toggleDarkMode()">Dark Mode</div>
+
     <div class="hamburger" onclick="toggleMenu()">
       <span></span><span></span><span></span>
     </div>
   </div>
 </nav>
 
+<!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#about">Tentang</a>
   <a href="#services">Layanan</a>
@@ -244,119 +307,170 @@
   <a href="#contact">Kontak</a>
 </div>
 
+<!-- HERO -->
 <header data-aos="fade-up">
-  <h1>Distribusi Cepat & Terpercaya</h1>
-  <p>Stock Point Indogrosir Tasikmalaya</p>
+  <h1>Distribusi Cepat & Tepat</h1>
+  <p>Stock Point Indogrosir Tasikmalaya — Mendukung Toko & UMKM Dengan Pasokan Terpercaya</p>
 </header>
 
+<!-- ABOUT -->
 <section id="about" class="section" data-aos="fade-up">
   <h2>Tentang Kami</h2>
-  <p class="subtitle">
-    Stock Point Indogrosir Tasikmalaya melayani distribusi barang kebutuhan
-    usaha dengan sistem cepat, akurat, dan terintegrasi.
-  </p>
+  <p> Stock Point Indogrosir adalah unit distribusi resmi yang berfokus pada penyediaan 
+    produk kebutuhan harian secara cepat dan efisien, mendukung UMKM serta toko dengan 
+    pasokan stabil dan layanan profesional.</p>
 </section>
 
+<!-- SERVICES -->
 <section id="services" class="section" data-aos="fade-up">
   <h2>Layanan Kami</h2>
-  <p class="subtitle">Solusi lengkap untuk mitra usaha</p>
 
   <div class="cards">
-    <div class="card">
-      <h3>Distribusi Barang</h3>
-      <p>Pengiriman cepat dengan sistem stok terkontrol.</p>
+    <div class="card" data-aos="zoom-in">
+      <h3>Distribusi Cepat</h3>
+      <p>Pengiriman barang tepat waktu ke seluruh area jangkauan.</p>
     </div>
-    <div class="card">
-      <h3>Harga Grosir</h3>
-      <p>Harga kompetitif untuk member dan mitra.</p>
+
+    <div class="card" data-aos="zoom-in" data-aos-delay="150">
+      <h3>Manajemen Stok</h3>
+      <p>Stok barang stabil untuk mendukung bisnis Anda.</p>
     </div>
-    <div class="card">
-      <h3>Sistem Terintegrasi</h3>
-      <p>Monitoring stok dan transaksi real-time.</p>
+
+    <div class="card" data-aos="zoom-in" data-aos-delay="300">
+      <h3>Dukungan UMKM</h3>
+      <p>Layanan profesional bagi toko & usaha lokal.</p>
     </div>
   </div>
 </section>
 
+<!-- GALLERY -->
 <section id="gallery" class="section" data-aos="fade-up">
   <h2>Gallery</h2>
+
   <div class="carousel">
-    <div><img src="img/gallery1.jpg" alt=""></div>
-    <div><img src="img/gallery2.jpg" alt=""></div>
-    <div><img src="img/gallery3.jpg" alt=""></div>
+    <div><img src="img/logo1.png" alt="Gallery 1"></div>
+    <div><img src="img/logo2.png" alt="Gallery 2"></div>
+    <div><img src="img/logo3.png" alt="Gallery 3"></div>
   </div>
 </section>
 
+<!-- MEMBER -->
 <section id="member" class="section" data-aos="fade-up">
   <h2>Cara Menjadi Member</h2>
-  <p class="subtitle">Langkah mudah menjadi mitra Indogrosir</p>
 
   <div class="member-steps">
-    <div class="step">
+    <div class="step" data-aos="zoom-in">
       <div class="step-number">1</div>
-      <h4>Datang ke Outlet</h4>
-      <p>Kunjungi Stock Point Indogrosir Tasikmalaya.</p>
+      <h3>Request kepada Admin</h3>
+      <p>Calon member mengajukan permintaan pendaftaran melalui admin Stock Point.</p>
     </div>
-    <div class="step">
+
+    <div class="step" data-aos="zoom-in" data-aos-delay="150">
       <div class="step-number">2</div>
-      <h4>Lengkapi Data</h4>
-      <p>Isi formulir dan persyaratan member.</p>
+      <h3>Survey Toko / Warung</h3>
+      <p>Advisor melakukan pengecekan lokasi dan memastikan data usaha.</p>
     </div>
-    <div class="step">
+
+    <div class="step" data-aos="zoom-in" data-aos-delay="300">
       <div class="step-number">3</div>
-      <h4>Verifikasi</h4>
-      <p>Data diverifikasi oleh petugas.</p>
+      <h3>Proses Pendaftaran</h3>
+      <p>Advisor menginput data lengkap calon member ke sistem.</p>
     </div>
-    <div class="step">
+
+    <div class="step" data-aos="zoom-in" data-aos-delay="450">
       <div class="step-number">4</div>
-      <h4>Aktif Berbelanja</h4>
-      <p>Member siap digunakan untuk transaksi.</p>
+      <h3>Akun Login Apps</h3>
+      <p>Member akan mendapatkan akun untuk masuk ke aplikasi SPI.</p>
     </div>
   </div>
 </section>
 
+<!-- CONTACT -->
 <section id="contact" class="section" data-aos="fade-up">
   <h2>Kontak Kami</h2>
-  <p>📍 Tasikmalaya, Jawa Barat</p>
-  <p>📞 0265-xxxxxx</p>
-  <p>✉️ info@indogrosir.co.id</p>
+  <p>Email: Tasikmalayaspi@gmail.com</p>
+  <p>Telepon Admin: 0831-7221-4675</p>
+  <br>
+
+  <!-- SOCIAL BUTTONS -->
+  <div class="social-buttons" style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-top:30px;">
+
+    <!-- WhatsApp -->
+    <a href="https://wa.me/6283172214675" target="_blank"
+      style="padding:14px 26px; background:linear-gradient(135deg,#25D366,#128C7E); color:white; border-radius:12px; font-weight:600; text-decoration:none; font-size:18px;">
+      WhatsApp
+    </a>
+
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/tas1kmalaya.spi?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"
+      style="padding:14px 26px; background:linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5); color:white; border-radius:12px; font-weight:600; text-decoration:none; font-size:18px;">
+      Instagram
+    </a>
+
+    <!-- Facebook -->
+    <a href="https://facebook.com/" target="_blank"
+      style="padding:14px 26px; background:linear-gradient(135deg,#1877F2,#0d47a1); color:white; border-radius:12px; font-weight:600; text-decoration:none; font-size:18px;">
+      Facebook
+    </a>
+
+    <!-- TikTok -->
+    <a href="https://www.tiktok.com/@tasikmalaya.spi?is_from_webapp=1&sender_device=pc" target="_blank"
+      style="padding:14px 26px; background:black; color:white; border-radius:12px; font-weight:600; text-decoration:none; font-size:18px;">
+      TikTok
+    </a>
+
+  </div>
 </section>
 
-<footer>
-  © 2025 Stock Point Indogrosir Tasikmalaya
-</footer>
+<!-- SOSMED FLOAT -->
+<div class="sosmed-fixed">
+  <a href="https://wa.me/6281234567890" target="_blank"><img src="https://i.ibb.co/sK6H0GQ/wa.png"></a>
+  <a href="https://instagram.com" target="_blank"><img src="https://i.ibb.co/4J8w1dq/ig.png"></a>
+  <a href="https://tiktok.com" target="_blank"><img src="https://i.ibb.co/4FRBjWz/tiktok.png"></a>
+  <a href="https://facebook.com" target="_blank"><img src="https://i.ibb.co/qs2zKxC/fb.png"></a>
+</div>
 
+<footer>© 2025 Stock Point Indogrosir — All Rights Reserved</footer>
+
+<!-- JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 <script>
+  /* Loading */
+  window.onload = function() {
+    setTimeout(() => {
+      document.getElementById("loading").style.opacity = "0";
+      setTimeout(() => document.getElementById("loading").style.display = "none", 500);
+    }, 800);
+  }
+
+  /* AOS */
   AOS.init();
 
-  function toggleDark(){
-    document.body.classList.toggle("dark");
+  /* Dark Mode */
+  function toggleDarkMode() {
+    document.body.classList.toggle('dark');
   }
 
-  function toggleMenu(){
-    const menu=document.getElementById("mobileMenu");
-    menu.style.display = menu.style.display==="flex" ? "none" : "flex";
+  /* Mobile Menu */
+  function toggleMenu() {
+    const menu = document.getElementById("mobileMenu");
+    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
   }
 
-  document.querySelectorAll('.mobile-menu a').forEach(link=>{
-    link.addEventListener('click',()=>{
-      document.getElementById("mobileMenu").style.display="none";
+  /* Carousel */
+  $(document).ready(function(){
+    $('.carousel').slick({
+      dots: true,
+      infinite: true,
+      autoplay: true,
+      autoplaySpeed: 2500,
     });
   });
-
-  $('.carousel').slick({
-    dots:true,
-    autoplay:true,
-    autoplaySpeed:2500
-  });
-
-  window.onload=()=>{
-    document.getElementById("loading").style.display="none";
-  }
 </script>
 
 </body>
 </html>
+
